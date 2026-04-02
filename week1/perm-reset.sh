@@ -1,27 +1,27 @@
 #!/bin/bash
 
-# Directory to monitor
+#Directory for monitor
 DIR="/home/rehbar/Downloads"
 Email="muhammadrehbarazmat@gmail.com"
 
 
-# Correct permissions and ownership
+#Correct permissions and ownership
 CORRECT_PERMS="750"
 CORRECT_OWNER="rehbar"
 CORRECT_GROUP="rehbar"
 
-# 1. Check if the directory exists first
+#Check if the directory exists first
 if [ ! -d "$DIR" ]; then
     echo "Error: $DIR does not exist. Skipping check."
     exit 1
 fi
 
-# 2. Get current values (only runs if directory exists)
+#Get current values
 CURRENT_PERMS=$(stat -c "%a" "$DIR")
 CURRENT_OWNER=$(stat -c "%U" "$DIR")
 CURRENT_GROUP=$(stat -c "%G" "$DIR")
 
-# 3. Compare values
+#Compare values
 if [[ "$CURRENT_PERMS" != "$CORRECT_PERMS" || "$CURRENT_OWNER" != "$CORRECT_OWNER" || "$CURRENT_GROUP" != "$CORRECT_GROUP" ]]; then
     echo "Change detected in $DIR"
     
