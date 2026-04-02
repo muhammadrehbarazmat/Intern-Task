@@ -31,10 +31,11 @@ if [[ "$CURRENT_PERMS" != "$CORRECT_PERMS" || "$CURRENT_OWNER" != "$CORRECT_OWNE
     sudo chown "$CORRECT_OWNER:$CORRECT_GROUP" "$DIR"
     
         #Send email alert 
-      echo  "$MESSAGE" | mail -s "Permissions restored" "$Email"
+      echo  "$Service Permission restored successfully on $(date)" | mail -s "Permissions restored" "$Email"
     
     echo "Permissions restored successfully"
 else
     echo "No changes detected"
 fi
+
 

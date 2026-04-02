@@ -1,3 +1,4 @@
+
 #!/bin/bash
 SERVICE_NAME="nginx"
 LIMIT=1000   # 256 MB in KB
@@ -13,10 +14,14 @@ else
     if [ "$MEMORY" -gt "$LIMIT" ]; then
         echo "Memory usage is $MEMORY KB. Restarting $SERVICE_NAME..."
         sudo systemctl restart $SERVICE_NAME
+       
         #Send email
-        echo "$MESSAGE" | mail -s "Nginx Restart Alert" "$Email"
-    else
+        echo "$SERVICE_NAME Service restarted successfully" | mail -s "Nginx Restart Alert" "$EMAIL"
+   
+       echo "service restarted successfully"
+        else
         echo "Memory usage is normal: $MEMORY KB"
     fi
 fi
+
 
