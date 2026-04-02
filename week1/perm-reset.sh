@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Directory to monitor
+DIR="/home/rehbar/Downloads"
+Email="muhammadrehbarazmat@gmail.com"
+
+
+# Correct permissions and ownership
+CORRECT_PERMS="750"
+CORRECT_OWNER="rehbar"
+CORRECT_GROUP="rehbar"
+
+# 1. Check if the directory exists first
+if [ ! -d "$DIR" ]; then
+    echo "Error: $DIR does not exist. Skipping check."
+    exit 1
+fi
+
+# 2. Get current values (only runs if directory exists)
+CURRENT_PERMS=$(stat -c "%a" "$DIR")
+CURRENT_OWNER=$(stat -c "%U" "$DIR")
+CURRENT_GROUP=$(stat -c "%G" "$DIR")
+
+# 3. Compare values
+if [[ "$CURRENT_PERMS" != "$CORRECT_PERMS" || "$CURRENT_OWNER" != "$CORRECT_OWNER" || "$CURRENT_GROUP" != "$CORRECT_GROUP" ]]; then
+    echo "Change detected in $DIR"
+    
+    echo "Restoring permissions..."
+    # Using -f (force) to suppress errors if something changes mid-execution
+    sudo chmod "$CORRECT_PERMS" "$DIR"
+    sudo chown "$CORRECT_OWNER:$CORRECT_GROUP" "$DIR"
+    
+        #Send email alert 
+      echo  "$Service Permission restored successfully on $(date)" | mail -s "Permissions restored" "$Email"
+    
+    echo "Permissions restored successfully"
+else
+    echo "No changes detected"
+fi
+
+
