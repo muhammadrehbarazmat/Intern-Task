@@ -15,7 +15,7 @@ if [ -z "$SOURCE_DIR" ]; then
     echo "Usage: $0 <directory_to_backup>"
     exit 1
 fi
-
+# if source directory don't exist
 
 if [ ! -d "$SOURCE_DIR" ]; then
     echo "ERROR: Source directory $SOURCE_DIR does not exist."
