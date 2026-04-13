@@ -33,7 +33,7 @@ def analyze_syslog(file_path):
 
 
 def generate_report():
-    print("\n===== SYSLOG ANALYSIS REPORT =====\n")
+    print("\n SYSLOG ANALYSIS REPORT \n")
 
     print("Top 5 Services:")
     for service, count in service_counter.most_common(5):
