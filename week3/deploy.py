@@ -13,11 +13,11 @@ os.chdir(PROJECT_DIR)
 print("Pulling latest code...")
 subprocess.run(["git", "pull", "origin", BRANCH])
 
-#  Killing old app (if running)
+#  Killing old process
 print("Stopping old app...")
 subprocess.run(["pkill", "-f", APP_FILE])
 
-#  Starting app in background
+#  Starting app 
 print("Starting app...")
 subprocess.Popen(
     ["nohup", "python3", APP_FILE],
