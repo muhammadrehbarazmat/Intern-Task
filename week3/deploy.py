@@ -25,4 +25,4 @@ subprocess.Popen(
     stderr=open("error.log", "a")
 )
 
-print("Deployment completed ✅")
+print("Deployment completed")
