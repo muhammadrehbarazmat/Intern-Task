@@ -18,7 +18,7 @@ def load_config(file_path):
         print(f"Error reading config: {e}")
         return None
 
-
+# validating keys
 def validate_config(config):
     for key, expected_type in REQUIRED_KEYS.items():
 
